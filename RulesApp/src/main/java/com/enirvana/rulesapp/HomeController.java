@@ -39,13 +39,11 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/npv")
-	public @ResponseBody RuleResponse getNPVShortSale() {
+	public @ResponseBody RuleResult getNPVShortSale() {
 		
-		RuleResponse response = new RuleResponse();
-//		response.setVariables(ShortSaleRuleUtil.getNPVShortSale());
-		response.setMonthlyTaxCost(100D);
+		RuleResult result = ShortSaleRuleUtil.getNPVShortSale();
 		
-		return response;
+		return result;
 		
 	}
 }

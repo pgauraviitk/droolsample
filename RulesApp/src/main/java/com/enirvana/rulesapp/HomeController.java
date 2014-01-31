@@ -42,7 +42,7 @@ public class HomeController {
 	public @ResponseBody RuleResponse getNPVShortSale() {
 		
 		RuleResponse response = new RuleResponse();
-		response.setVariables(ShortSaleRuleUtil.getNPVShortSale());
+//		response.setVariables(ShortSaleRuleUtil.getNPVShortSale());
 		response.setMonthlyTaxCost(100D);
 		
 		return response;

@@ -137,6 +137,12 @@
 		    <version>1.9.12</version>
 		</dependency>     
 		
+		<dependency>
+		    <groupId>org.apache</groupId>
+		    <artifactId>poi</artifactId>
+		    <version>3.9</version>
+		</dependency>     
+		
 			<dependency>
 		     <groupId>org.kie</groupId>
 		     <artifactId>kie-api</artifactId>
@@ -144,13 +150,14 @@
 		   <dependency>
 		     <groupId>org.drools</groupId>
 		     <artifactId>drools-compiler</artifactId>
-		     <scope>import</scope>
+		     <scope>runtime</scope>
 		   </dependency>
 	      <dependency>
 	        <groupId>org.drools</groupId>
 	        <artifactId>drools-decisiontables</artifactId>
 	        <version>6.0.1.Final</version>
 	      </dependency>
+	      
 	</dependencies>
     <build>
         <plugins>

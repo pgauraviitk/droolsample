@@ -1,8 +1,18 @@
 package com.enirvana.rulesapp;
 
-public class RuleRequest {
-	private Double principalBalance;
-	private Double interestRate;
+import java.io.Serializable;
+
+public class RuleRequest implements Serializable{
+	public boolean fireRule;
+	public Double principalBalance;
+	public Double interestRate;
+	public Double annualInsuranceRate;
+	public boolean isFireRule() {
+		return fireRule;
+	}
+	public void setFireRule(boolean fireRule) {
+		this.fireRule = fireRule;
+	}
 	public Double getPrincipalBalance() {
 		return principalBalance;
 	}
@@ -15,5 +25,12 @@ public class RuleRequest {
 	public void setInterestRate(Double interestRate) {
 		this.interestRate = interestRate;
 	}
-
+	public Double getAnnualInsuranceRate() {
+		return annualInsuranceRate;
+	}
+	public void setAnnualInsuranceRate(Double annualInsuranceRate) {
+		this.annualInsuranceRate = annualInsuranceRate;
+	}
+	
+	
 }

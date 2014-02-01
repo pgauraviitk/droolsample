@@ -1,30 +1,32 @@
 package com.enirvana.rulesapp;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class RuleResult {
-	public Double monthlyTaxCost;
-	public Double monthlyInsuranceCost;
-	public Double monthlyCosts;
+	public BigDecimal monthlyTaxCost;
+	public BigDecimal monthlyInsuranceCost;
+	public BigDecimal monthlyCosts;
 	public Date firstDayCurrentMonth;
 	public Date firstDayLiquidationMonthShortSale;
+	public int dummy;
 	
-	public Double getMonthlyTaxCost() {
+	public BigDecimal getMonthlyTaxCost() {
 		return monthlyTaxCost;
 	}
-	public void setMonthlyTaxCost(Double monthlyTaxCost) {
+	public void setMonthlyTaxCost(BigDecimal monthlyTaxCost) {
 		this.monthlyTaxCost = monthlyTaxCost;
 	}
-	public Double getMonthlyInsuranceCost() {
+	public BigDecimal getMonthlyInsuranceCost() {
 		return monthlyInsuranceCost;
 	}
-	public void setMonthlyInsuranceCost(Double monthlyInsuranceCost) {
+	public void setMonthlyInsuranceCost(BigDecimal monthlyInsuranceCost) {
 		this.monthlyInsuranceCost = monthlyInsuranceCost;
 	}
-	public Double getMonthlyCosts() {
+	public BigDecimal getMonthlyCosts() {
 		return monthlyCosts;
 	}
-	public void setMonthlyCosts(Double monthlyCosts) {
+	public void setMonthlyCosts(BigDecimal monthlyCosts) {
 		this.monthlyCosts = monthlyCosts;
 	}
 	
@@ -40,15 +42,21 @@ public class RuleResult {
 	public void setFirstDayLiquidationMonthShortSale(
 			Date firstDayLiquidationMonthShortSale) {
 		this.firstDayLiquidationMonthShortSale = firstDayLiquidationMonthShortSale;
+	}	
+	public int getDummy() {
+		return dummy;
+	}
+	public void setDummy(int dummy) {
+		this.dummy = dummy;
 	}
 	
 	@Override
 	public String toString() {
-		return "RuleResult [monthlyTaxCost=" + monthlyTaxCost
-				+ ", monthlyInsuranceCost=" + monthlyInsuranceCost
-				+ ", monthlyCosts=" + monthlyCosts + ", firstDayCurrentMonth="
+		return "RuleResult [monthlyTaxCost=" + monthlyTaxCost.doubleValue()
+				+ ", monthlyInsuranceCost=" + monthlyInsuranceCost.doubleValue()
+				+ ", monthlyCosts=" + monthlyCosts.doubleValue() + ", firstDayCurrentMonth="
 				+ firstDayCurrentMonth + ", firstDayLiquidationMonthShortSale="
-				+ firstDayLiquidationMonthShortSale + "]";
+				+ firstDayLiquidationMonthShortSale + ", dummy=" + dummy + "]";
 	}
 	
 }

@@ -1,73 +1,75 @@
 package com.enirvana.rulesapp;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class RuleRequest implements Serializable{
 	public boolean fireRule;
-	public Double principalBalance;
-	public Double annualTaxRate;
-	public Double annualInsuranceRate;
-	public Double monthlyServicingFee;
-	public Double monthly3PAMFee;
-	public Double monthlyInspectionFee;
-	public Double monthlyHOA;
-	public Double monthlyOther;
+	public BigDecimal principalBalance;
+	public BigDecimal annualTaxRate;
+	public BigDecimal annualInsuranceRate;
+	public BigDecimal monthlyServicingFee;
+	public BigDecimal monthly3PAMFee;
+	public BigDecimal monthlyInspectionFee;
+	public BigDecimal monthlyHOA;
+	public BigDecimal monthlyOther;
 	public Date asOfDate;
 	public Date liquidationDateShortSale;
+	
 	public boolean isFireRule() {
 		return fireRule;
 	}
 	public void setFireRule(boolean fireRule) {
 		this.fireRule = fireRule;
 	}
-	public Double getPrincipalBalance() {
+	public BigDecimal getPrincipalBalance() {
 		return principalBalance;
 	}
-	public void setPrincipalBalance(Double principalBalance) {
+	public void setPrincipalBalance(BigDecimal principalBalance) {
 		this.principalBalance = principalBalance;
 	}
 	
-	protected Double getAnnualTaxRate() {
+	protected BigDecimal getAnnualTaxRate() {
 		return annualTaxRate;
 	}
-	protected void setAnnualTaxRate(Double annualTaxRate) {
+	protected void setAnnualTaxRate(BigDecimal annualTaxRate) {
 		this.annualTaxRate = annualTaxRate;
 	}
-	public Double getAnnualInsuranceRate() {
+	public BigDecimal getAnnualInsuranceRate() {
 		return annualInsuranceRate;
 	}
-	public void setAnnualInsuranceRate(Double annualInsuranceRate) {
+	public void setAnnualInsuranceRate(BigDecimal annualInsuranceRate) {
 		this.annualInsuranceRate = annualInsuranceRate;
 	}
-	public Double getMonthlyServicingFee() {
+	public BigDecimal getMonthlyServicingFee() {
 		return monthlyServicingFee;
 	}
-	public void setMonthlyServicingFee(Double monthlyServicingFee) {
+	public void setMonthlyServicingFee(BigDecimal monthlyServicingFee) {
 		this.monthlyServicingFee = monthlyServicingFee;
 	}
-	public Double getMonthly3PAMFee() {
+	public BigDecimal getMonthly3PAMFee() {
 		return monthly3PAMFee;
 	}
-	public void setMonthly3PAMFee(Double monthly3pamFee) {
+	public void setMonthly3PAMFee(BigDecimal monthly3pamFee) {
 		monthly3PAMFee = monthly3pamFee;
 	}
-	public Double getMonthlyInspectionFee() {
+	public BigDecimal getMonthlyInspectionFee() {
 		return monthlyInspectionFee;
 	}
-	public void setMonthlyInspectionFee(Double monthlyInspectionFee) {
+	public void setMonthlyInspectionFee(BigDecimal monthlyInspectionFee) {
 		this.monthlyInspectionFee = monthlyInspectionFee;
 	}
-	public Double getMonthlyHOA() {
+	public BigDecimal getMonthlyHOA() {
 		return monthlyHOA;
 	}
-	public void setMonthlyHOA(Double monthlyHOA) {
+	public void setMonthlyHOA(BigDecimal monthlyHOA) {
 		this.monthlyHOA = monthlyHOA;
 	}
-	public Double getMonthlyOther() {
+	public BigDecimal getMonthlyOther() {
 		return monthlyOther;
 	}
-	public void setMonthlyOther(Double monthlyOther) {
+	public void setMonthlyOther(BigDecimal monthlyOther) {
 		this.monthlyOther = monthlyOther;
 	}
 	public Date getAsOfDate() {

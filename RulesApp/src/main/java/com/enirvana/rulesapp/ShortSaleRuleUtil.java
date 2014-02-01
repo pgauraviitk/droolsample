@@ -1,10 +1,7 @@
 package com.enirvana.rulesapp;
 
-import java.util.ArrayList;
+import java.math.BigDecimal;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import org.kie.api.KieServices;
 import org.kie.api.runtime.KieContainer;
@@ -20,17 +17,17 @@ public class ShortSaleRuleUtil {
     	RuleResult result = new RuleResult();
     	RuleRequest request = new RuleRequest();
     	request.setFireRule(true);
-    	request.setPrincipalBalance(100D);
-    	request.setAnnualTaxRate(24D);
-    	request.setAnnualInsuranceRate(16D);
+    	request.setPrincipalBalance(new BigDecimal(100,CalculatorUtil.mc));
+    	request.setAnnualTaxRate(new BigDecimal(24,CalculatorUtil.mc));
+    	request.setAnnualInsuranceRate(new BigDecimal(16,CalculatorUtil.mc));
     	request.setAsOfDate(new Date());
     	request.setLiquidationDateShortSale(new Date());
     	
-    	request.setMonthlyServicingFee(100D);
-    	request.setMonthly3PAMFee(100D);
-    	request.setMonthlyInspectionFee(200D);
-    	request.setMonthlyHOA(200D);
-    	request.setMonthlyOther(200D);
+    	request.setMonthlyServicingFee(new BigDecimal(100,CalculatorUtil.mc));
+    	request.setMonthly3PAMFee(new BigDecimal(100,CalculatorUtil.mc));
+    	request.setMonthlyInspectionFee(new BigDecimal(200,CalculatorUtil.mc));
+    	request.setMonthlyHOA(new BigDecimal(200,CalculatorUtil.mc));
+    	request.setMonthlyOther(new BigDecimal(200,CalculatorUtil.mc));
     	
 //    	Double rr = req.monthlyServicingFee+req.monthly3PAMFee
 //    			    +req.monthlyInspectionFee+req.monthlyHOA
@@ -44,6 +41,7 @@ public class ShortSaleRuleUtil {
 		
         return result;
 	}
+    
 	public static final void main(String[] args) {
         try {
             // load up the knowledge base   

@@ -8,11 +8,7 @@ import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 
 public class ShortSaleRuleUtil {
-	
-    private static KieServices ks = KieServices.Factory.get();
-    private static KieContainer kContainer = ks.getKieClasspathContainer();
-    private static KieSession kSession = kContainer.newKieSession("ksession-dtables");
-	
+		
     public static RuleResult getNPVShortSale() {  
     	RuleResult result = new RuleResult();
     	RuleRequest request = new RuleRequest();
@@ -27,13 +23,12 @@ public class ShortSaleRuleUtil {
     	request.setMonthly3PAMFee(new BigDecimal(100,CalculatorUtil.mc));
     	request.setMonthlyInspectionFee(new BigDecimal(200,CalculatorUtil.mc));
     	request.setMonthlyHOA(new BigDecimal(200,CalculatorUtil.mc));
-    	request.setMonthlyOther(new BigDecimal(200,CalculatorUtil.mc));
-    	
-//    	Double rr = req.monthlyServicingFee+req.monthly3PAMFee
-//    			    +req.monthlyInspectionFee+req.monthlyHOA
-//    			    +req.monthlyOther
-//    			    +result.monthlyTaxCost+ result.monthlyInsuranceCost;
-    	
+    	request.setMonthlyOther(new BigDecimal(200,CalculatorUtil.mc));    	    			
+		
+    	KieServices ks = KieServices.Factory.get();    	
+        KieContainer kContainer = ks.getKieClasspathContainer();             
+        KieSession kSession = kContainer.newKieSession("ksession-dtables"); 
+        
     	kSession.insert(request);
     	kSession.setGlobal("req",request);
     	kSession.setGlobal("result",result);
@@ -49,5 +44,6 @@ public class ShortSaleRuleUtil {
         } catch (Throwable t) {
             t.printStackTrace();
         }
-    }
+    }	
+	
 }

@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class RuleRequest implements Serializable{
+
+	private static final long serialVersionUID = -1638103176878856382L;
 	public boolean fireRule;
 	public BigDecimal principalBalance;
 	public BigDecimal annualTaxRate;

@@ -35,11 +35,7 @@ public class JSONUtil {
 				JSONArray jsonArray = (JSONArray) obj;
 				int length = jsonArray.length();
 				
-				List<Map<String, Object>> mapList = new ArrayList<>(length);
-				for(int i=0;i<length;i++){
-					Map<String,Object> objMap = new HashMap<>();
-					mapList.add(objMap);					
-				}	
+				List mapList = new ArrayList(length);	
 				parseJsonArray(jsonArray, mapList);
 				
 				parsedMap.put(key, mapList);
@@ -64,11 +60,7 @@ public class JSONUtil {
 				JSONArray jsonArray = (JSONArray) obj;
 				int length = jsonArray.length();
 				
-				List<Map<String, Object>> mapList = new ArrayList<>(length);
-				for(int i=0;i<length;i++){
-					Map<String,Object> objMap = new HashMap<>();
-					mapList.add(objMap);					
-				}	
+				List mapList = new ArrayList(length);	
 				parseJsonArray(jsonArray, mapList);
 				
 				parsedMap.put(key, mapList);
@@ -78,23 +70,21 @@ public class JSONUtil {
 		}
 	}
 	
-	public static void parseJsonArray(JSONArray jsonArray,List<Map<String, Object>> mapList){						
+	public static void parseJsonArray(JSONArray jsonArray,List mapList){						
 		int length = jsonArray.length();
 		for(int k=0;k<length;k++){
 			Object obj = jsonArray.get(k);							
 			if(obj instanceof JSONObject){
-				parseJsonObject((JSONObject)obj,mapList.get(k));				
+				Map<String,Object> objMap = new HashMap<>();
+				mapList.add(objMap);
+				parseJsonObject((JSONObject)obj,objMap);				
 			}else if(obj instanceof JSONArray){	
 				JSONArray jsonArray1 = (JSONArray) obj;			
 				int length1 = jsonArray1.length();
-				List<Map<String, Object>> mapList1 = new ArrayList<>(length1);
-				for(int i=0;i<length1;i++){
-					Map<String,Object> objMap = new HashMap<>();
-					mapList1.add(objMap);					
-				}	
+				List mapList1 = new ArrayList(length1);	
 				parseJsonArray(jsonArray1,mapList1);				
 			}else if(obj instanceof String){
-				mapList.get(k).put((String)obj, obj);
+				mapList.add(obj);
 			}			
 		}
 	}	
@@ -124,13 +114,22 @@ public class JSONUtil {
 				printTabs(loopCount);
 				System.out.println("[");
 				int inCount = loopCount+1;
-				List<Map<String, Object>> mapList = (List<Map<String,Object>>) val;
+				List mapList = (List) val;
 				int length = mapList.size();
 				int i=0;
-				for (Iterator<Map<String, Object>> iterator2 = mapList
-						.iterator(); iterator2.hasNext();) {
-					Map<String,Object> map = iterator2.next();
-					printMap(map,inCount,i==length-1);
+				for (Iterator iterator2 = mapList.iterator(); iterator2.hasNext();) {
+					Object obj = iterator2.next();
+					if(obj instanceof Map){
+						Map map = (Map) obj;
+						printMap(map,inCount,i==length-1);					
+					}else if(obj instanceof String){
+						printTabs(inCount);
+						if(i==length-1){
+							System.out.println("\""+obj+"\"");
+						}else{
+							System.out.println("\""+obj+"\",");
+						}
+					}
 					i++;
 				}
 				printTabs(loopCount);
@@ -187,6 +186,14 @@ public class JSONUtil {
 	
 	public static void main(String[] args){			
 		Map<String,Object> parsedMap = parseJsonFile("C:\\Users\\admin\\Downloads\\prashant\\reprojectkickedoff\\2014-01-24 NPVRequest.json");		
-		printMap(parsedMap,1,true);		
+		printMap(parsedMap,1,true);	
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		Map<String,Object> parsedMap1 = parseJsonFile("C:\\Users\\admin\\Downloads\\prashant\\reprojectkickedoff\\Pre-Run Response.json");		
+		printMap(parsedMap1,1,true);
 	}
 }

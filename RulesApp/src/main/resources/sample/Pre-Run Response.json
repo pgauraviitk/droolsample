@@ -1,0 +1,135 @@
+{
+    "Programs":[
+        "Short Sale",
+        "Short Refi",
+        "REO As Is",
+        "REO Repaired",
+        "REO DIL",
+        "REO DIL Repaired",
+        "MOD",
+        "FC Bid",
+        "Note Sale"
+    ],
+    "Fields":[
+        {
+            "Name": "CurrentOffer",
+            "DisplayName": "Current Offer",
+            "Format": "Money",
+            "DisplayOrder": "1",
+            "AlwaysRequired": "N",
+            "Programs": ["Short Sale", "FC Bid", "Note Sale"]
+        },
+        {
+            "Name": "MonthlyHOA",
+            "DisplayName": "Monthly HOA Amount",
+            "Format": "Money",
+            "DisplayOrder": "2",
+            "AlwaysRequired": "Y",
+            "Programs": []
+        },
+        {
+            "Name": "JuniorLienSettlement",
+            "DisplayName": "Jr. Lien Settlement Amount",
+            "Format": "Money",
+            "DisplayOrder": "3",
+            "AlwaysRequired": "Y",
+            "Programs": []
+        },
+        {
+            "Name": "CashForKeys",
+            "DisplayName": "Cash For Keys Amount",
+            "Format": "Money",
+            "DisplayOrder": "4",
+            "AlwaysRequired": "N",
+            "Programs": ["REO As Is", "REO Repaired", "REO DIL", "REO DIL Repaired"]
+        },
+        {
+            "Name": "DILIncentive",
+            "DisplayName": "DIL Incentive",
+            "Format": "Money",
+            "DisplayOrder": "5",
+            "AlwaysRequired": "N",
+            "Programs": ["REO DIL", "REO DIL Repaired"]
+        },
+        {
+            "Name": "MODBorrowerContribution",
+            "DisplayName": "MOD Borrower Contribution",
+            "Format": "Money",
+            "DisplayOrder": "6",
+            "AlwaysRequired": "N",
+            "Programs": ["MOD"]
+        },
+        {
+            "Name": "MODModifiedUPB",
+            "DisplayName": "MOD Modified UPB",
+            "Format": "Money",
+            "DisplayOrder": "7",
+            "AlwaysRequired": "N",
+            "Programs": ["MOD"]
+        },
+        {
+            "Name": "MODDeferredUPB",
+            "DisplayName": "MOD Deferred UPB",
+            "Format": "Money",
+            "DisplayOrder": "8",
+            "AlwaysRequired": "N",
+            "Programs": ["MOD"]
+        },
+        {
+            "Name": "MODModifiedRate",
+            "DisplayName": "MOD Modified Rate",
+            "Format": "Number",
+            "DisplayOrder": "9",
+            "AlwaysRequired": "N",
+            "Programs": ["MOD"]
+        },
+        {
+            "Name": "MODModifiedTerm",
+            "DisplayName": "MOD Modified Term",
+            "Format": "Money",
+            "DisplayOrder": "10",
+            "AlwaysRequired": "N",
+            "Programs": ["MOD"]
+        },
+        {
+            "Name": "MODModifiedPI",
+            "DisplayName": "MOD Modified PI",
+            "Format": "Money",
+            "DisplayOrder": "11",
+            "AlwaysRequired": "N",
+            "Programs": ["MOD"]
+        },
+        {
+            "Name": "MODStartDate",
+            "DisplayName": "Mod Start Date",
+            "Format": "Date",
+            "DisplayOrder": "12",
+            "AlwaysRequired": "N",
+            "Programs": ["MOD"]
+        },
+        {
+            "Name": "MODDTI",
+            "DisplayName": "MOD DTI",
+            "Format": "Number",
+            "DisplayOrder": "13",
+            "AlwaysRequired": "N",
+            "Programs": ["MOD"]
+        },
+        {
+            "Name": "MODTDTI",
+            "DisplayName": "MOD T DTI",
+            "Format": "Number",
+            "DisplayOrder": "14",
+            "AlwaysRequired": "N",
+            "Programs": ["MOD"]
+        },
+        {
+            "Name": "MODExceptionReason",
+            "DisplayName": "MOD Exception Reason",
+            "Format": "Text",
+            "DisplayOrder": "15",
+            "AlwaysRequired": "N",
+            "Programs": ["MOD"]
+        }
+]
+}

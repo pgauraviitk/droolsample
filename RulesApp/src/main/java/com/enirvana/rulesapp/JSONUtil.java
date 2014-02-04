@@ -2,9 +2,11 @@ package com.enirvana.rulesapp;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -167,21 +169,18 @@ public class JSONUtil {
 		}
 	}
 	
-	public static Map<String,Object> parseJsonFile(String filePath){
-		File jsonFile = new File(filePath);
+	public static Map<String,Object> parseJsonStream(InputStream is){
 		StringBuilder builder = new StringBuilder("");
 		BufferedReader bufferedReader = null;
 		try {
-			bufferedReader = new BufferedReader(new FileReader(jsonFile));
+			bufferedReader = new BufferedReader(new InputStreamReader(is));
 			String line;
 			while((line=bufferedReader.readLine())!=null){
 				builder.append(line);
 			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}finally{
+		} finally {
 			try {
 				if(bufferedReader!=null)
 					bufferedReader.close();
@@ -196,8 +195,28 @@ public class JSONUtil {
 		return parsedMap;
 	}
 	
-	public static void main(String[] args){			
-		Map<String,Object> parsedMap = parseJsonFile("C:\\Users\\admin\\Downloads\\prashant\\reprojectkickedoff\\2014-01-24 NPVRequest.json");		
+	public static Map<String,Object> parseJsonFile(String filePath){
+		File jsonFile = new File(filePath);		
+		Map<String, Object> parsedMap = null;
+		FileInputStream fis = null;
+		try {
+			fis = new FileInputStream(jsonFile);
+			parsedMap = parseJsonStream(fis);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(fis!=null)
+					fis.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return parsedMap;
+	}
+	
+	public static void main(String[] args){	
+		Map<String,Object> parsedMap = parseJsonStream(JSONUtil.class.getResourceAsStream("/sample/2014-01-24 NPVRequest.json"));		
 		printMap(parsedMap,1,true);	
 		System.out.println();
 		System.out.println();
@@ -205,7 +224,7 @@ public class JSONUtil {
 		System.out.println();
 		System.out.println();
 		System.out.println();
-		Map<String,Object> parsedMap1 = parseJsonFile("C:\\Users\\admin\\Downloads\\prashant\\reprojectkickedoff\\Pre-Run Response.json");		
+		Map<String,Object> parsedMap1 = parseJsonStream(JSONUtil.class.getResourceAsStream("/sample/Pre-Run Response.json"));		
 		printMap(parsedMap1,1,true);
 		System.out.println();
 		System.out.println();
@@ -213,7 +232,7 @@ public class JSONUtil {
 		System.out.println();
 		System.out.println();
 		System.out.println();
-		Map<String,Object> parsedMap2 = parseJsonFile("C:\\Users\\admin\\Downloads\\prashant\\reprojectkickedoff\\Pre-Run Response1.json");		
+		Map<String,Object> parsedMap2 = parseJsonStream(JSONUtil.class.getResourceAsStream("/sample/Pre-Run Response1.json"));		
 		printMap(parsedMap2,1,true);
 	}
 }

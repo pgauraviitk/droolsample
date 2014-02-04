@@ -102,6 +102,21 @@ public class ExcelParser {
                 				reqFieldList.add(field);
                 			}                			                			
                 			break;
+                		case 13:
+                			field.setNotes(value);
+                			break;
+                		case 15:
+                			field.setDisplayName(value);
+                			break;
+                		case 16:
+                			field.setFormat(value);
+                			break;
+                		case 17:
+                			field.setDisplayOrder(value);
+                			break;
+                		case 18:
+                			field.setAlwaysRequired(value);
+                			break;
                 	}               	               	                                   	
                 }
                 if(field.getName()!=null && !"".equals(field.getName())){

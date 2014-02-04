@@ -35,7 +35,7 @@ public class JSONUtil {
 				JSONArray jsonArray = (JSONArray) obj;
 				int length = jsonArray.length();
 				
-				List mapList = new ArrayList(length);	
+				List<Object> mapList = new ArrayList<>(length);	
 				parseJsonArray(jsonArray, mapList);
 				
 				parsedMap.put(key, mapList);
@@ -60,7 +60,7 @@ public class JSONUtil {
 				JSONArray jsonArray = (JSONArray) obj;
 				int length = jsonArray.length();
 				
-				List mapList = new ArrayList(length);	
+				List<Object> mapList = new ArrayList<>(length);	
 				parseJsonArray(jsonArray, mapList);
 				
 				parsedMap.put(key, mapList);
@@ -70,7 +70,7 @@ public class JSONUtil {
 		}
 	}
 	
-	public static void parseJsonArray(JSONArray jsonArray,List mapList){						
+	public static void parseJsonArray(JSONArray jsonArray,List<Object> mapList){						
 		int length = jsonArray.length();
 		for(int k=0;k<length;k++){
 			Object obj = jsonArray.get(k);							
@@ -81,8 +81,9 @@ public class JSONUtil {
 			}else if(obj instanceof JSONArray){	
 				JSONArray jsonArray1 = (JSONArray) obj;			
 				int length1 = jsonArray1.length();
-				List mapList1 = new ArrayList(length1);	
-				parseJsonArray(jsonArray1,mapList1);				
+				List<Object> mapList1 = new ArrayList<>(length1);						
+				mapList.add(mapList1);
+				parseJsonArray(jsonArray1,mapList1);
 			}else if(obj instanceof String){
 				mapList.add(obj);
 			}			
@@ -101,7 +102,10 @@ public class JSONUtil {
 			String key = iterator.next();			
 			Object val = parsedMap.get(key);
 			
-			if(val instanceof String){
+			if(val instanceof Map){
+				Map<String,Object> map = (Map<String,Object>) val;
+				printMap(map,loopCount,k==l-1);					
+			}else if(val instanceof String){
 				printTabs(loopCount);
 				if(k==l-1){
 					System.out.println("\""+key+"\" : \""+val+"\"");
@@ -109,35 +113,7 @@ public class JSONUtil {
 					System.out.println("\""+key+"\" : \""+val+"\",");
 				}
 			}else if(val instanceof List){
-				printTabs(loopCount);
-				System.out.println("\""+key+"\" : ");
-				printTabs(loopCount);
-				System.out.println("[");
-				int inCount = loopCount+1;
-				List mapList = (List) val;
-				int length = mapList.size();
-				int i=0;
-				for (Iterator iterator2 = mapList.iterator(); iterator2.hasNext();) {
-					Object obj = iterator2.next();
-					if(obj instanceof Map){
-						Map map = (Map) obj;
-						printMap(map,inCount,i==length-1);					
-					}else if(obj instanceof String){
-						printTabs(inCount);
-						if(i==length-1){
-							System.out.println("\""+obj+"\"");
-						}else{
-							System.out.println("\""+obj+"\",");
-						}
-					}
-					i++;
-				}
-				printTabs(loopCount);
-				if(k==l-1){
-					System.out.println("]");
-				}else{
-					System.out.println("],");
-				}				
+				printList(key,(List<Object>)val, loopCount,k==l-1);				
 			}
 			k++;
 		}
@@ -146,6 +122,42 @@ public class JSONUtil {
 			System.out.println("}");
 		}else{
 			System.out.println("},");
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static void printList(String key,List<Object> list,int count,boolean last){
+		if(key!=null){
+			printTabs(count);
+			System.out.println("\""+key+"\" : ");
+		}
+		printTabs(count);
+		System.out.println("[");
+		int inCount = count+1;;
+		int length = list.size();
+		int i=0;
+		for (Iterator<Object> iterator2 = list.iterator(); iterator2.hasNext();) {
+			Object obj = iterator2.next();
+			if(obj instanceof Map){				
+				Map<String,Object> map = (Map<String,Object>) obj;
+				printMap(map,inCount,i==length-1);					
+			}else if(obj instanceof List){
+				printList(null,(List<Object>)obj, inCount,i==length-1);
+			}else if(obj instanceof String){
+				printTabs(inCount);
+				if(i==length-1){
+					System.out.println("\""+obj+"\"");
+				}else{
+					System.out.println("\""+obj+"\",");
+				}
+			}
+			i++;
+		}
+		printTabs(count);
+		if(last){
+			System.out.println("]");
+		}else{
+			System.out.println("],");
 		}
 	}
 	
@@ -195,5 +207,13 @@ public class JSONUtil {
 		System.out.println();
 		Map<String,Object> parsedMap1 = parseJsonFile("C:\\Users\\admin\\Downloads\\prashant\\reprojectkickedoff\\Pre-Run Response.json");		
 		printMap(parsedMap1,1,true);
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		Map<String,Object> parsedMap2 = parseJsonFile("C:\\Users\\admin\\Downloads\\prashant\\reprojectkickedoff\\Pre-Run Response1.json");		
+		printMap(parsedMap2,1,true);
 	}
 }

@@ -15,11 +15,13 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+@SuppressWarnings("unused")
 public class ExcelParser {
 	private Map<String,List<Field>> programFieldMap = new HashMap<>();
-	private List<String> programList = new ArrayList<>(); 
-	private List<Field> fieldList = new ArrayList<Field>();
-	
+	private Map<Field,List<String>> fieldProgramMap = new HashMap<>();
+	private List<String> programList = new ArrayList<>();
+	private List<Field> fieldList = new ArrayList<>();
+
 	public void parse(String fileName){
 		File file = new File(fileName);		
 		FileInputStream fis = null;
@@ -98,9 +100,16 @@ public class ExcelParser {
                 				reqFieldList = new ArrayList<>();
                 				programFieldMap.put(program, reqFieldList);
                 			}
+                            List<String> pList = fieldProgramMap.get(field);
+                            if(pList==null){
+                                pList = new ArrayList<>();
+                                fieldProgramMap.put(field,pList);
+                            }
                 			if("X".equals(value) && field.getName()!=null && !"".equals(field.getName())){
                 				reqFieldList.add(field);
-                			}                			                			
+                                pList.add(program);
+                			}
+
                 			break;
                 		case 13:
                 			field.setNotes(value);
@@ -124,7 +133,7 @@ public class ExcelParser {
                 }
 	        }
 	        
-	        programList = new ArrayList<String>(programMap.values());
+	        programList = new ArrayList<>(programMap.values());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}		        
@@ -134,7 +143,11 @@ public class ExcelParser {
 		return programFieldMap;
 	}
 
-	public List<String> getProgramList() {
+    public Map<Field, List<String>> getFieldProgramMap() {
+        return fieldProgramMap;
+    }
+
+    public List<String> getProgramList() {
 		return programList;
 	}
 

@@ -58,11 +58,34 @@ public class Field {
 	public void setAlwaysRequired(String alwaysRequired) {
 		this.alwaysRequired = alwaysRequired;
 	}
+
 	@Override
 	public String toString() {
 		return "Field [name=" + name + ", source=" + source + ", category="
 				+ category + ", displayName=" + displayName + ", format="
 				+ format + ", displayOrder=" + displayOrder
 				+ ", alwaysRequired=" + alwaysRequired + "]";
-	}	
+	}
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Field field = (Field) o;
+
+        if (!category.equals(field.category)) return false;
+        if (!name.equals(field.name)) return false;
+        if (!source.equals(field.source)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name.hashCode();
+        result = 31 * result + source.hashCode();
+        result = 31 * result + category.hashCode();
+        return result;
+    }
 }

@@ -17,14 +17,14 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+@SuppressWarnings("unused")
 public class JSONUtil {
 	
 	public static void parseJson(String jsonString,Map<String,Object> parsedMap){				
 		JSONTokener jsonTokener = new JSONTokener(jsonString);						
 		JSONObject root = (JSONObject) jsonTokener.nextValue();	
-		
-		@SuppressWarnings("unchecked")
-		Iterator<Object> iterator = root.keys();
+
+		Iterator iterator = root.keys();
 		while(iterator.hasNext()){
 			String key = (String) iterator.next();
 			Object obj = root.get(key);							
@@ -47,9 +47,8 @@ public class JSONUtil {
 		}
 	}
 	
-	public static void parseJsonObject(JSONObject jsonObject,Map<String,Object> parsedMap){						
-		@SuppressWarnings("unchecked")
-		Iterator<Object> iterator = jsonObject.keys();
+	public static void parseJsonObject(JSONObject jsonObject,Map<String,Object> parsedMap){
+		Iterator iterator = jsonObject.keys();
 		while(iterator.hasNext()){
 			String key = (String) iterator.next();
 			Object obj = jsonObject.get(key);							
@@ -90,10 +89,10 @@ public class JSONUtil {
 				mapList.add(obj);
 			}			
 		}
-	}	
-	
-	@SuppressWarnings("unchecked")
-	public static void printMap(Map<String,Object> parsedMap,int count,boolean last){
+	}
+
+    @SuppressWarnings("unchecked")
+    public static void printMap(Map<String,Object> parsedMap,int count,boolean last){
 		printTabs(count);
 		System.out.println("{");
 		int loopCount = count+1;
@@ -115,7 +114,7 @@ public class JSONUtil {
 					System.out.println("\""+key+"\" : \""+val+"\",");
 				}
 			}else if(val instanceof List){
-				printList(key,(List<Object>)val, loopCount,k==l-1);				
+				printList(key, (List<Object>) val, loopCount, k == l - 1);
 			}
 			k++;
 		}
@@ -126,8 +125,8 @@ public class JSONUtil {
 			System.out.println("},");
 		}
 	}
-	
-	@SuppressWarnings("unchecked")
+
+    @SuppressWarnings("unchecked")
 	public static void printList(String key,List<Object> list,int count,boolean last){
 		if(key!=null){
 			printTabs(count);
@@ -135,26 +134,25 @@ public class JSONUtil {
 		}
 		printTabs(count);
 		System.out.println("[");
-		int inCount = count+1;;
+		int inCount = count+1;
 		int length = list.size();
 		int i=0;
-		for (Iterator<Object> iterator2 = list.iterator(); iterator2.hasNext();) {
-			Object obj = iterator2.next();
-			if(obj instanceof Map){				
-				Map<String,Object> map = (Map<String,Object>) obj;
-				printMap(map,inCount,i==length-1);					
-			}else if(obj instanceof List){
-				printList(null,(List<Object>)obj, inCount,i==length-1);
-			}else if(obj instanceof String){
-				printTabs(inCount);
-				if(i==length-1){
-					System.out.println("\""+obj+"\"");
-				}else{
-					System.out.println("\""+obj+"\",");
-				}
-			}
-			i++;
-		}
+        for (Object obj : list) {
+            if (obj instanceof Map) {
+                Map<String, Object> map = (Map<String, Object>) obj;
+                printMap(map, inCount, i == length - 1);
+            } else if (obj instanceof List) {
+                printList(null, (List<Object>) obj, inCount, i == length - 1);
+            } else if (obj instanceof String) {
+                printTabs(inCount);
+                if (i == length - 1) {
+                    System.out.println("\"" + obj + "\"");
+                } else {
+                    System.out.println("\"" + obj + "\",");
+                }
+            }
+            i++;
+        }
 		printTabs(count);
 		if(last){
 			System.out.println("]");
@@ -194,7 +192,7 @@ public class JSONUtil {
 		
 		return parsedMap;
 	}
-	
+
 	public static Map<String,Object> parseJsonFile(String filePath){
 		File jsonFile = new File(filePath);		
 		Map<String, Object> parsedMap = null;

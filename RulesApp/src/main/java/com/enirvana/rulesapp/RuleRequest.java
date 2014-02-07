@@ -1,90 +1,71 @@
 package com.enirvana.rulesapp;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.Serializable;
-import java.math.BigDecimal;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
-public class RuleRequest implements Serializable{
+public class RuleRequest implements Serializable {
 
-	private static final long serialVersionUID = -1638103176878856382L;
+	private static final Logger logger = LoggerFactory.getLogger(RuleRequest.class);
 	public boolean fireRule;
-	public BigDecimal principalBalance;
-	public BigDecimal annualTaxRate;
-	public BigDecimal annualInsuranceRate;
-	public BigDecimal monthlyServicingFee;
-	public BigDecimal monthly3PAMFee;
-	public BigDecimal monthlyInspectionFee;
-	public BigDecimal monthlyHOA;
-	public BigDecimal monthlyOther;
-	public Date asOfDate;
-	public Date liquidationDateShortSale;
+
+	public static Map<String, String> 	strAttr = new HashMap<String, String>();
+	public static Map<String, Double> 	doubleAttr = new HashMap<String, Double>();
+	public static Map<String, Date> 	dateAttr = new HashMap<String, Date>();
+	public static Map<String, Double> 	hpiAttr = new HashMap<String, Double>();
+
+	public static String getStrAttr(String attName) {
+		return strAttr.get(attName);
+	}
+
+	public static void addStrAttr(String key, String value) {
+		strAttr.put(key, value);
+	}
 	
+	public static Double getDoubleAttr(String attName) {
+		return doubleAttr.get(attName);
+	}
+
+	public static void addDoubleAttr(String key, Double value) {
+		doubleAttr.put(key, value);
+	}
+
+	public static Date getDateAttr(String attName) {
+		return dateAttr.get(attName);
+	}
+
+	public static void addDateAttr(String key, Date value) {
+		dateAttr.put(key, value);
+	}
+
 	public boolean isFireRule() {
 		return fireRule;
 	}
+
 	public void setFireRule(boolean fireRule) {
 		this.fireRule = fireRule;
 	}
-	public BigDecimal getPrincipalBalance() {
-		return principalBalance;
+
+
+	public static Double hpiValue(Date date) {
+		return hpiAttr.get(getMoYr(date));
 	}
-	public void setPrincipalBalance(BigDecimal principalBalance) {
-		this.principalBalance = principalBalance;
-	}
-	
-	protected BigDecimal getAnnualTaxRate() {
-		return annualTaxRate;
-	}
-	protected void setAnnualTaxRate(BigDecimal annualTaxRate) {
-		this.annualTaxRate = annualTaxRate;
-	}
-	public BigDecimal getAnnualInsuranceRate() {
-		return annualInsuranceRate;
-	}
-	public void setAnnualInsuranceRate(BigDecimal annualInsuranceRate) {
-		this.annualInsuranceRate = annualInsuranceRate;
-	}
-	public BigDecimal getMonthlyServicingFee() {
-		return monthlyServicingFee;
-	}
-	public void setMonthlyServicingFee(BigDecimal monthlyServicingFee) {
-		this.monthlyServicingFee = monthlyServicingFee;
-	}
-	public BigDecimal getMonthly3PAMFee() {
-		return monthly3PAMFee;
-	}
-	public void setMonthly3PAMFee(BigDecimal monthly3pamFee) {
-		monthly3PAMFee = monthly3pamFee;
-	}
-	public BigDecimal getMonthlyInspectionFee() {
-		return monthlyInspectionFee;
-	}
-	public void setMonthlyInspectionFee(BigDecimal monthlyInspectionFee) {
-		this.monthlyInspectionFee = monthlyInspectionFee;
-	}
-	public BigDecimal getMonthlyHOA() {
-		return monthlyHOA;
-	}
-	public void setMonthlyHOA(BigDecimal monthlyHOA) {
-		this.monthlyHOA = monthlyHOA;
-	}
-	public BigDecimal getMonthlyOther() {
-		return monthlyOther;
-	}
-	public void setMonthlyOther(BigDecimal monthlyOther) {
-		this.monthlyOther = monthlyOther;
-	}
-	public Date getAsOfDate() {
-		return asOfDate;
-	}
-	public void setAsOfDate(Date asOfDate) {
-		this.asOfDate = asOfDate;
-	}
-	public Date getLiquidationDateShortSale() {
-		return liquidationDateShortSale;
-	}
-	public void setLiquidationDateShortSale(Date liquidationDateShortSale) {
-		this.liquidationDateShortSale = liquidationDateShortSale;
+
+	public static void addHPIAttr(String key, Double value) {
+		hpiAttr.put(key, value);
 	}
 	
+	private static String getMoYr(Date date) {
+//		logger.info("Date entered is "+date);
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		String result = (calendar.get(Calendar.MONTH)+1)+"/"+calendar.get(Calendar.YEAR);
+//		logger.info("MoYr is "+result);
+		return result;
+	}
 }

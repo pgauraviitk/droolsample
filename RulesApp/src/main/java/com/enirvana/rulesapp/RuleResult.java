@@ -1,62 +1,54 @@
 package com.enirvana.rulesapp;
 
-import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class RuleResult {
-	public BigDecimal monthlyTaxCost;
-	public BigDecimal monthlyInsuranceCost;
-	public BigDecimal monthlyCosts;
-	public Date firstDayCurrentMonth;
-	public Date firstDayLiquidationMonthShortSale;
-	public int dummy;
+	public static Map<String, Double> 	doubleAttr = new HashMap<String, Double>();
+	public static Map<String, Date> 	dateAttr = new HashMap<String, Date>();
+	public static double[] cashArr;
 	
-	public BigDecimal getMonthlyTaxCost() {
-		return monthlyTaxCost;
+	public static double[] getCashArr() {
+		return cashArr;
 	}
-	public void setMonthlyTaxCost(BigDecimal monthlyTaxCost) {
-		this.monthlyTaxCost = monthlyTaxCost;
+
+	public static void setCashArr(double[] cashArr) {
+		RuleResult.cashArr = cashArr;
 	}
-	public BigDecimal getMonthlyInsuranceCost() {
-		return monthlyInsuranceCost;
+
+	public static Double getDoubleAttrRes(String attName) {
+		return doubleAttr.get(attName);
 	}
-	public void setMonthlyInsuranceCost(BigDecimal monthlyInsuranceCost) {
-		this.monthlyInsuranceCost = monthlyInsuranceCost;
+
+	public static void addDoubleAttrRes(String key, Double value) {
+		doubleAttr.put(key, value);
 	}
-	public BigDecimal getMonthlyCosts() {
-		return monthlyCosts;
+
+	public static Date getDateAttrRes(String attName) {
+		return dateAttr.get(attName);
 	}
-	public void setMonthlyCosts(BigDecimal monthlyCosts) {
-		this.monthlyCosts = monthlyCosts;
-	}
-	
-	public Date getFirstDayCurrentMonth() {
-		return firstDayCurrentMonth;
-	}
-	public void setFirstDayCurrentMonth(Date firstDayCurrentMonth) {
-		this.firstDayCurrentMonth = firstDayCurrentMonth;
-	}
-	public Date getFirstDayLiquidationMonthShortSale() {
-		return firstDayLiquidationMonthShortSale;
-	}
-	public void setFirstDayLiquidationMonthShortSale(
-			Date firstDayLiquidationMonthShortSale) {
-		this.firstDayLiquidationMonthShortSale = firstDayLiquidationMonthShortSale;
-	}	
-	public int getDummy() {
-		return dummy;
-	}
-	public void setDummy(int dummy) {
-		this.dummy = dummy;
+
+	public static void addDateAttrRes(String key, Date value) {
+		dateAttr.put(key, value);
 	}
 	
+	public String getCashArrStr() {
+		StringBuilder sb = new StringBuilder("{");
+		for(int i = 0; i < cashArr.length; i++) {
+			sb.append(cashArr[i]);
+			if(i != cashArr.length-1)
+				sb.append(", ");
+		}
+		
+		sb.append("}");
+		
+		return sb.toString();
+	}
+
 	@Override
 	public String toString() {
-		return "RuleResult [monthlyTaxCost=" + monthlyTaxCost.doubleValue()
-				+ ", monthlyInsuranceCost=" + monthlyInsuranceCost.doubleValue()
-				+ ", monthlyCosts=" + monthlyCosts.doubleValue() + ", firstDayCurrentMonth="
-				+ firstDayCurrentMonth + ", firstDayLiquidationMonthShortSale="
-				+ firstDayLiquidationMonthShortSale + ", dummy=" + dummy + "]";
+		return "RuleResult [" + doubleAttr +" " + dateAttr + getCashArrStr() + "]";
 	}
 	
 }

@@ -1,5 +1,9 @@
 package com.enirvana.rulesapp;
 
+import org.apache.poi.ss.formula.functions.FinanceLib;
+import org.apache.poi.ss.formula.functions.Irr;
+import org.codehaus.jackson.map.ObjectMapper;
+
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
@@ -7,11 +11,10 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class CalculatorUtil {
-	
-	protected static MathContext mc = new MathContext(2,RoundingMode.HALF_UP);
-	
+
+	protected static MathContext mc = new MathContext(2, RoundingMode.HALF_UP);
+
 	public static Double getMonthlyTaxCost() {
-		
 		return null;
 	}
 	
@@ -42,23 +45,23 @@ public class CalculatorUtil {
 	public static BigDecimal divide(BigDecimal a,double b){
 		return a.divide(new BigDecimal(b), mc);
 	}
-	
+
 	public static BigDecimal divide(BigDecimal a,BigDecimal b){
 		return a.divide(b, mc);
 	}
-	
+
 	public static BigDecimal multiply(BigDecimal a,int b){
 		return a.multiply(new BigDecimal(b), mc);
 	}
-	
+
 	public static BigDecimal multiply(BigDecimal a,double b){
 		return a.multiply(new BigDecimal(b), mc);
 	}
-	
+
 	public static BigDecimal multiply(BigDecimal a,BigDecimal b){
 		return a.multiply(b, mc);
 	}
-	
+
 	public static BigDecimal multiply(BigDecimal a,BigDecimal... b){
 		BigDecimal temp = BigDecimal.ONE;
 		for(int i=0;i<b.length;i++){
@@ -66,19 +69,19 @@ public class CalculatorUtil {
 		}
 		return a.multiply(temp, mc);
 	}
-	
+
 	public static BigDecimal add(BigDecimal a,int b){
 		return a.add(new BigDecimal(b), mc);
 	}
-	
+
 	public static BigDecimal add(BigDecimal a,double b){
 		return a.add(new BigDecimal(b), mc);
 	}
-	
+
 	public static BigDecimal add(BigDecimal a,BigDecimal b){
 		return a.add(b, mc);
 	}
-	
+
 	public static BigDecimal add(BigDecimal a,BigDecimal... b){
 		BigDecimal temp = BigDecimal.ZERO;
 		for(int i=0;i<b.length;i++){
@@ -87,4 +90,21 @@ public class CalculatorUtil {
 		return a.add(temp, mc);
 	}
 
+    public static void testJson() {
+        ObjectMapper mapper = new ObjectMapper();
+//		mapper.readV
+    }
+
+    public static Double NPV(double[] cashFlows) {
+        double rate = Double.valueOf(15D)/Double.valueOf(1200D);
+        Double npv = FinanceLib.npv(rate, cashFlows);
+
+        return npv;
+    }
+
+    public static Double IRR(double[] income) {
+        Double irr = Irr.irr(income);
+
+        return irr;
+    }
 }

@@ -1,0 +1,123 @@
+{ 
+	"MonthlyTaxCost":"$312.50",
+	"MonthlyInsuranceCost":"$116.67",
+	"MonthlyCosts":"829.17",
+	"FirstDayCurrentMonth":"2/1/2014",
+	 "shortsale":{
+	    "FirstDayLiquidationMonthShortSale":"12/1/2014",
+	    "MonthstoLiquidationShortSale":"10",
+	    "MonthstoCFKPaidShortSale":"",
+	    "FirstDayCFKPaidMonthShortSale":"",
+	    "HPIChangetoLiquidationShortSale":"",
+	    "CurrentDecisionShortSale":"",
+	    "ClosingCostShortSale":"",
+	    "CommissionCostShortSale":"",
+	    "LiquidationCostsShortSale":"",
+	    "CashFlowArrayShortSale":"",
+	    "NPVShortSale":"",
+	    "IRRShortSale":""
+	 },
+	 "Short Refinance":{
+	    "LiquidationDateShortRefinance":"",
+	    "FirstDayLiquidationMonthShortRefinance":"",
+	    "MonthstoLiquidationShortRefinance":"",
+	    "HPIChangetoLiquidationShortRefinance":"",
+	    "CurrentDecisionShortRefinance":"",
+	    "ClosingCostShortRefinance":"",
+	    "CommissionCostShortRefinance":"",
+	    "LiquidationCostsShortRefinance":"",
+	    "CashFlowArrayShortRefinance":"",
+	    "NPVShortRefinance":"",
+	    "IRRShortRefinance":""
+	 
+	 },
+	 "REO As Is":{
+	    "LiquidationDateREOAsIs":"",
+	    "FirstDayLiquidationMonthREOAsis":"",
+	    "MonthstoLiquidationREOAsis":"",
+	    "CFKPaidDateREOAsIs":"",
+	    "MonthstoCFKPaidREOAsIs":"",
+	    "FirstDayCFKPaidDateREOAsIs":"",
+	    "HPIChangetoLiquidationREOAsIs":"",
+	    "CurrentDecisionREOAsIs":"",
+	    "ClosingCostREOAsIs":"",
+	    "CommissionCostREOAsIs":"",
+	    "LiquidationCostsREOAsIs":"",
+	    "CashFlowArrayREOAsIs":"",  
+	    "NPVREOAsIs":"", 
+	    "IRRREOAsIs":""
+	 
+	 },
+	 "REO Repaired":{
+	    "LiquidationDateREORepaired":"", 
+	    "FirstDayLiquidationMonthREORepaired":"",  
+	    "MonthstoLiquidationREORepaired":"",  
+	    "CFKPaidDateREORepaired":"",
+	    "MonthstoCFKPaidREORepaired":"",
+	    "FirstDayCFKPaidDateREORepaired":"",
+	    "HPIChangetoLiquidationREORepaired":"",
+	    "CurrentDecisionREORepaired":"",
+	    "ClosingCostREORepaired":"",
+	    "CommissionCostREORepaired":"",
+	    "LiquidationCostsREORepaired":"",
+	    "CashFlowArrayREORepaired":"",
+	    "NPVREORepaired":"",
+	    "IRRREORepaired":""
+	 
+	 },
+	 "REO DIL As Is":{
+	    "LiquidationDateREODILAsIs":"",
+	    "FirstDayLiquidationMonthREODILAsIs":"",
+	    "MonthstoLiquidationREODILAsIs":"",
+	    "CFKPaidDateREODILAsIs":"",
+	    "MonthstoCFKPaidREODILAsIs":"",
+	    "FirstDayCFKPaidDateREODILAsIs":"",
+	    "HPIChangetoLiquidationREODILAsIs":"",
+	    "CurrentDecisionREODILAsIs":"",
+	    "ClosingCostREODILAsIs":"",
+	    "CommissionCostREODILAsIs":"",
+	    "LiquidationCostsREODILAsIs":"",
+	    "CashFlowArrayREODILAsIs":"",
+	    "NPVREODILAsIs":"",
+	    "IRRREODILAsIs":""
+	 
+	 },
+	 "REO DIL Repaired":{
+	    "LiquidationDateREODILRepaired":"",
+	    "FirstDayLiquidationMonthREODILRepaired":"",
+	    "MonthstoLiquidationREODILRepaired":"",
+	    "CFKPaidDateREODILRepaired":"",
+	    "MonthstoCFKPaidREODILRepaired":"",
+	    "FirstDayCFKPaidDateREODILRepaired":"",
+	    "HPIChangetoLiquidationREODILRepaired":"",
+	    "CurrentDecisionREODILRepaired":"",
+	    "ClosingCostREODILRepaired":"",
+	    "CommissionCostREODILRepaired":"",
+	    "LiquidationCostsREODILRepaired":"",
+	    "CashFlowArrayREODILRepaired":"",
+	    "IRRREODILRepaired":""
+	 },
+	 "MOD":{
+	    "LiquidationDateMOD":"",
+	    "MonthstoLiquidationMOD":"",
+	    "CashFlowArrayMOD":"",
+	    "NPVMOD":"",
+	    "IRRMOD":""
+	 
+	 },
+	 "NoteSale":{
+	    "CurrentDecisionNoteSale":"",
+	    "LiquidationCostsNoteSale":"",
+	    "MonthstoLiquidationNoteSale":"",
+	    "CashFlowArrayNoteSale":"",
+	    "NPVREODILRepaired":"",
+	    "IRRREODILRepaired":"",
+	    "CurrentDecisionFCSale":"",
+	    "LiquidationCostsFCSale":"",
+	    "MonthstoLiquidationFCSale":"",
+	    "CashFlowArrayFCSale":""
+	 
+	 }
+}
+
+	

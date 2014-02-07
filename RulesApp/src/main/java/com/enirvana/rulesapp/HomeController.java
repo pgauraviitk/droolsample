@@ -1,9 +1,6 @@
 package com.enirvana.rulesapp;
 
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Locale;
-
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -11,6 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.text.DateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 /**
  * Handles requests for the application home page.
@@ -38,8 +39,9 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/npv")
-	public @ResponseBody RuleResult getNPVShortSale() {
-		
+	public @ResponseBody
+    RuleResult getNPVShortSale(JSONObject jsonObj) {
+		logger.info(jsonObj.toString());
 		RuleResult result = ShortSaleRuleUtil.getNPVShortSale();
 		
 		return result;
